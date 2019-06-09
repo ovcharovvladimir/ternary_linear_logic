@@ -1,0 +1,27 @@
+opam-version: "2.0"
+name: "Linear logic with ternary associative"
+synopsis: ""
+description: """
+Linear logic with ternary associative
+"""
+license: ""
+maintainer: "pizza964333@gmail.com"
+authors: [ "Fayonnagan Piker" ]
+homepage: "https://hub.darcs.net/Fayonnagan_Piker/ternary_linear_logic"
+bug-reports: ""
+dev-repo: "darcs+https://hub.darcs.net/Fayonnagan_Piker/ternary_linear_logic"
+available: os = "linux" | os = "macos"
+build: [
+  ["opam" "config" "exec" "--" "dune" "subst"] {pinned}
+  ["opam" "config" "exec" "--" "dune" "build" "-p" name "-j" jobs]
+  ["dune" "runtest" "-p" name] {with-test}
+]
+install: ["opam" "config" "exec" "--" "dune" "install"]
+run-test: ["dune" "runtest" "-p" name]
+depends: [
+  "ppx_implicits" {build & = "hg"}
+  "ppx_monadic" {build}
+]
+pin-depends: [
+  ["ppx_implicits.hg" "hg+https://bitbucket.org/Kamiel/ppx_implicits#76683cc35f69f7a152cbb65f3ae417acfe3b5adb"]
+]

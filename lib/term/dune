@@ -1,0 +1,16 @@
+(dirs .submodules)
+
+(include_subdirs unqualified)
+
+(library
+ (name term)
+ (public_name ternary-linear-logic.term)
+ (flags
+  (:standard -ppx "../../_opam/lib/ppx_monadic/ppx.exe --as-ppx" -ppx
+    ../../_opam/lib/ppx_implicits/ppx_implicits -ppx
+    ../../_opam/lib/ppx_implicits/ppx_implicits_type_reduction -ppx
+    ../../_opam/lib/ppx_implicits/ppx_implicits_final_check))
+ (preprocess
+  (action
+   (run /bin/bash ../../scripts/macro01.sh %{input-file})))
+ (libraries ppx_implicits.runtime))

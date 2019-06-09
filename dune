@@ -1,0 +1,9 @@
+(dirs :standard \ scripts docs)
+
+(env
+ (dev
+  (flags
+   (:standard -w +A-4-6-42-44-45-48 -warn-error +A)))
+ (release
+  (flags
+   (:standard -O3))))
