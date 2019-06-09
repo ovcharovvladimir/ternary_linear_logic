@@ -17,12 +17,12 @@ let compare : [`Poly] t -> [`Poly] t -> int =
   let ( && ) a b = match (a, b) with 0, a -> a | a, _ -> a in
   let rec f a b =
     match (a, b) with
+    | Poly Star, _ -> 0
+    | _, Poly Star -> 0
     | Poly (Code a), Poly (Code b) -> compare a b
     | Poly (Word a), Poly (Word b) -> compare a b
     | Poly (Code _), Poly (Word _) -> -1
     | Poly (Word _), Poly (Code _) -> 1
-    | Poly Star, _ -> 0
-    | _, Poly Star -> 0
     | Poly (Path (a, b)), Poly (Path (c, d)) ->
         f (Poly b) (Poly d) && f (Poly a) (Poly c)
     | Poly (Sort (a, b)), Poly (Sort (c, d)) ->
